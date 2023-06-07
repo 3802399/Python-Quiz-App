@@ -47,7 +47,7 @@ class SettingsFrame(tk.Frame):
         self._save_win = save_color
 
         self.close_btn = ttk.Button(self, text="Close", command=self.close_win)
-        self.save_btn = ttk.Button(self, text="Save", command=self.save_win)
+        self.save_btn = ttk.Button(self, text="Save", command=self.save_win, style='Accent.TButton')
 
         # display widgets
         names = [self.display_name, self.color_name]
