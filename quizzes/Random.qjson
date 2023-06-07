@@ -1,0 +1,129 @@
+{
+    "__NAME__": "Random",
+    "__NUM__": 11,
+    "__TOPIC__": "lots of stuff",
+    "__QUESTIONS__": {
+        "What is a computer bootloader?": {
+            "options": [
+                "A delicious dessert made of shredded motherboards",
+                "A popular shoe for computers",
+                "A program that loads an OS",
+                "An alien creature that is secretly the backbone to the Internet"
+            ],
+            "answer": [
+                "A program that loads an OS"
+            ]
+        },
+        "Where did \"work will set you free\" appear?": {
+            "options": [
+                "O'hare airport",
+                "Auschwitz",
+                "Eiffel Tower",
+                "Taj Mahal"
+            ],
+            "answer": [
+                "Auschwitz"
+            ]
+        },
+        "The gemstone pearl represents which month of the year?": {
+            "options": [
+                "January",
+                "July",
+                "May",
+                "June"
+            ],
+            "answer": [
+                "June"
+            ]
+        },
+        "The core of the earth is believed to consist of 88.8% of which?": {
+            "options": [
+                "Iron",
+                "Lava",
+                "Silicon",
+                "Carbon"
+            ],
+            "answer": [
+                "Iron"
+            ]
+        },
+        "Are you smart?": {
+            "options": [
+                "Yes",
+                "No"
+            ],
+            "answer": [
+                "Yes"
+            ]
+        },
+        "Which of the following planets has the Great Red Storm?": {
+            "options": [
+                "Mars",
+                "Jupiter",
+                "Earth",
+                "Mercury",
+                "Pluto"
+            ],
+            "answer": [
+                "Jupiter"
+            ]
+        },
+        "Is this application hackable?": {
+            "options": [
+                "Yes",
+                "No",
+                "Probably",
+                "Probably Not",
+                "Ask the government"
+            ],
+            "answer": [
+                "Probably"
+            ]
+        },
+        "At which location in computer memory can you write to VGA?": {
+            "options": [
+                "0x000000",
+                "0xB80000",
+                "0xFFFFFF",
+                "0xCF0000"
+            ],
+            "answer": [
+                "0xB80000"
+            ]
+        },
+        "What is the file system Windows uses?": {
+            "options": [
+                "NTFS",
+                "Ext2",
+                "USTAR",
+                "RAMFS",
+                "ISO 9660"
+            ],
+            "answer": [
+                "NTFS"
+            ]
+        },
+        "What software interrupt does Linux use on x86 for system calls?": {
+            "options": [
+                "0x35",
+                "0x60",
+                "0x70",
+                "0x80"
+            ],
+            "answer": [
+                "0x80"
+            ]
+        },
+        "Using which BIOS interrupt can VGA/VBE modes be selected?": {
+            "options": [
+                "0x11",
+                "0x12",
+                "0x10",
+                "0x27"
+            ],
+            "answer": [
+                "0x10"
+            ]
+        }
+    }
+}

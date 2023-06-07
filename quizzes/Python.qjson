@@ -1,0 +1,40 @@
+{
+    "__NAME__": "Python",
+    "__NUM__": 3,
+    "__TOPIC__": "programming",
+    "__QUESTIONS__": {
+        "When was the first release of Python?": {
+            "options": [
+                "1991",
+                "2041",
+                "1939",
+                "1964"
+            ],
+            "answer": [
+                "1991"
+            ]
+        },
+        "Who created Python?": {
+            "options": [
+                "Bill Gates",
+                "Adolf Hitler",
+                "Julius Caesar",
+                "Guido van Rossum"
+            ],
+            "answer": [
+                "Guido van Rossum"
+            ]
+        },
+        "When did development on Python begin?": {
+            "options": [
+                "1990",
+                "1991",
+                "1984",
+                "1989"
+            ],
+            "answer": [
+                "1989"
+            ]
+        }
+    }
+}

@@ -1,0 +1,73 @@
+My final project is a quiz application that allows the user to be able to
+create and answer quizzes.
+
+Scope:
+  - No more or less than 4 possible answers per question
+  - A few sample quizzes are included
+  - Quizzes can be created (by the user) and saved on the hard drive
+  - No limit to number of questions that can be created
+  - Both GUI and CLI provided
+
+Flow:
+  CLI:
+    - Ask user if they want to create a quiz
+      - if so, run create_quiz_cli() and create a quiz
+    - Whether or not they created a quiz, now they are asked to choose a directory in which the quiz they want to run is
+      - For this project, the quizzes directory works fine
+    - Then they are asked to choose from the quiz files to get their quiz
+    - It prints the quiz name and loops through the questions and keeps score
+    - It then thanks the user for playing and gives them their score
+    - It then asks them if they want to quit the application
+
+  GUI:
+    - It first displays a menu with a Treeview of all the available quizzes in the quizzes directory provided with this project
+      - This menu has four buttons:
+        - A create button where the user can create a new quiz
+        - A refresh button where the user can refresh the available quizzes (if they created a new quiz and it doesn't show up on the Treeview)
+        - A select button where the user can run a quiz if they have one selected
+        - A settings button to change settings
+    - If they create a new quiz:
+      - They are asked to add the name and topic of the quiz, with the option of going back to the main menu
+      - Then they create the questions
+        - The new question page asks the user for the question and four possible answers (and checkboxes to select which are correct)
+        - There is a back button in case the user wishes to change a previous question
+        - There is a new question button which allows the user to create a new question
+        - Finally, a finish quiz button which allows the user to finish creating the quiz (when they want to)
+      - They are then told that the quiz was successfully created and saved to the hard disk, or it was not
+      - They can go home from there
+    - If they run a quiz:
+      - They iterate through all the questions, where they answer the questions and move on
+      - They can go back if they choose to edit their answer
+      - At the end, they are given their score
+    - If they go to settings:
+      - there are settings they can change (like display view [gui, cli], or display color for gui [dark, light])
+      - uses radiobuttons
+      - two buttons at end:
+        - close: close settings and return to home
+        - save: save any changed settings and return to home
+
+UX
+  CLI:
+    - To determine necessary quiz data (the directory and quiz name), the user gets asked via the input() function
+    - When creating a quiz, they get asked the question name, and then the user inputs four different answers (a, b, c, d)
+      - They will enter the correct answers in the form 'abc', where a, b, and c are correct answers
+    - At the end of creating a quiz, they will be asked to run a quiz
+    - When running a quiz, they will get asked directory and quiz name, inputted via input()
+      - Then they are asked for the correct answers to each question (in the form of 'abc', where a, b, and c are correct)
+    - At the end of running a quiz, it will ask the user if they want to quit the app (with a lowercase "y")
+
+  GUI:
+    - The user will interact with the application via a user interface, which uses a few different widgets:
+      - Entry: this is a small text box, used exclusively for creating quizzes (for getting name, topic, questions, and possible answers for those questions)
+      - Button: this is used for a number of features throughout the app, mainly going from one screen to another (ex, the main menu to creating a new quiz) or refreshing the quizzes
+      - Treeview: this is a special tkinter widget that is used in the app to show the available quizzes in the app and their respective topics - it is used only once
+      - Checkboxes: these are like radio buttons, but several can be checked at once - used to select correct answers when creating or running a quiz
+      - Scrollbar: this is used exclusively with Treeview in the case there are more quizzes than can be displayed at once, so the user can scroll
+      - Frame: this is each "screen" used by the window - the main menu, the question creation page, etc. are all their own Frames
+    - This project uses a ttk theme called Sun Valley by @rdbende, installed as a PyPI module (light mode looks better in my opinion)
+
+Plans for future development:
+  - add less/more possible answers than 4 (not correct answers, possible answers)
+  - add a nicer UI for GUI
+  - possibly use AI to generate random quizzes
+  - Add a web application
