@@ -41,6 +41,8 @@ class Main:
         interface = cli.CLI()
 
         while True:
+            # see if the user wants to create a quiz - if so, then do so
+            # if not, run a quiz
             choice = input("Do you want to create a quiz (c)?")
 
             if choice.lower() == "c":
@@ -48,6 +50,7 @@ class Main:
 
             interface.find_and_run_quiz()
 
+            # ask the user if they want to quit (instead of having to Ctrl+C)
             exit = input("Do you want to exit? (y/n) ")
 
             if exit.lower() == "y":

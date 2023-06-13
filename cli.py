@@ -1,4 +1,5 @@
 import quiz as _quiz
+import random
 
 class CLI:
     def __init__(self):
@@ -21,6 +22,7 @@ class CLI:
     def run_quiz(self):
         quiz = self.quiz
 
+        # letters are easier for user to put as option instead of manually typing it out where there is bigger probability of error
         alphabet = "abcdefghijklmnopqrstuvwxyz"
 
         print(f"{quiz.name}")
@@ -34,6 +36,14 @@ class CLI:
 
             ops = quiz.questions[q]["options"]
             ans = quiz.questions[q]["answer"]
+            # get the randomized list of options
+            randomized_ops = []
+
+            for op in ops:
+                randomized_ops.append(op)
+
+            # shuffle the random list
+            random.shuffle(randomized_ops)
 
             choice = ""
 
@@ -42,7 +52,7 @@ class CLI:
 
             i = 0
 
-            for option in ops:
+            for option in randomized_ops:
                 letter = alphabet[i]
                 print(f"\t{letter}. {option}")
                 i += 1
@@ -52,7 +62,7 @@ class CLI:
 
             # get answers
             for letter in choice:
-                if letter in alphabet[:len(ops)]:
+                if letter in alphabet[:len(randomized_ops)]:
                     # get index of letter
                     index = 0
 
@@ -62,8 +72,9 @@ class CLI:
 
                         index += 1
 
-                    user_answers.append(ops[index])
+                    user_answers.append(randomized_ops[index])
 
+            # check if the users given answers are correct
             if self.manager.check_correct(user_answers, ans):
                 score += 1
 
@@ -75,6 +86,7 @@ class CLI:
 
         print(f"Thanks for playing the quiz \"{quiz.name}\"! Your score: {score}/{total}.")
 
+    # format a path with .qjson at the end to make it easy
     def format_path(self, name, directory=""):
         return f"{directory}/{name}.qjson" if directory != "" else f"{name}.qjson"
 
@@ -83,6 +95,7 @@ class CLI:
 
         while True:
             self.directory = input("Enter directory of quizzes: ")
+            # given the directory name find the quizzes in that directory
             self.quizzes = self.manager.get_all_quizzes(self.directory)
 
             if self.quizzes != None and len(self.quizzes) > 0:
@@ -100,6 +113,7 @@ class CLI:
         quiz_choice_str = ""
         total_quizzes = len(quizzes)
 
+        # show the user the quiz names and let them select from them
         print(f"Total quizzes: {total_quizzes}")
 
         for i in range(0, total_quizzes):
@@ -116,19 +130,24 @@ class CLI:
 
         self.quiz_name = quizzes[quiz_choice_int - 1]
 
+    # get raw JSON data given a name
     def get_quiz_data_from_name(self):
         path = self.format_path(self.quiz_name, directory=self.directory)
         self.quiz_data = self.manager.read_quiz(path)
 
+    # get a runnable quiz itself given raw JSON
     def get_quiz_from_data(self):
         self.quiz = _quiz.Quiz()
         self.quiz.write_json(self.quiz_data)
 
+    # function for user to create a quiz
     def create_quiz(self):
+        # create an empty quiz to fill later
         quiz = _quiz.Quiz()
         alphabet = "abcdefghijklmnopqrstuvwxyz"
         corresponding_indexes = {}
 
+        # use dict to store indexes for letters instead of writing a for loop each time we need an index from a letter
         _index = 0
         for letter in alphabet:
             corresponding_indexes[letter] = _index
@@ -138,12 +157,14 @@ class CLI:
 
         while True:
             q = input("Enter question (hit enter when empty when done adding options): ")
+            # options[option_num] = option
             options = {}
             answers = []
 
             options_count = 0
 
             while True:
+                # the letter we display to the user will be based on index
                 letter = alphabet[options_count]
                 option = input(f"{letter}. ")
 
@@ -159,14 +180,18 @@ class CLI:
             answer = ""
 
             while True:
+                # now that the user has finished adding the options they need to select the correct one(s)
                 answer = input("Answer (a=1,b=1,etc - multiple answers allowed): ")
 
+                # 1 <= number of correct options <= number of options
                 if len(answer) < 1 or len(answer) > options_count:
                     continue
 
                 answers = list(answer)
                 reset = False
 
+                # make sure that the letters that signify which answers are correct are within proper boundaries
+                # i.e., when we find indexes from the letters we shouldn't have out-of-bound letters
                 for i in answers:
                     if i not in alphabet[:options_count]:
                         reset = True

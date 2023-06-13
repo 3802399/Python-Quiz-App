@@ -32,6 +32,7 @@ Flow:
         - The new question page asks the user for the question and four possible answers (and checkboxes to select which are correct)
         - There is a back button in case the user wishes to change a previous question
         - There is a new question button which allows the user to create a new question
+        - There is a add/remove option to add as many options as the user wants (minimum 2)
         - Finally, a finish quiz button which allows the user to finish creating the quiz (when they want to)
       - They are then told that the quiz was successfully created and saved to the hard disk, or it was not
       - They can go home from there
@@ -67,7 +68,7 @@ UX
     - This project uses a ttk theme called Sun Valley by @rdbende, installed as a PyPI module (light mode looks better in my opinion)
 
 Plans for future development:
-  - add less/more possible answers than 4 (not correct answers, possible answers)
-  - add a nicer UI for GUI
+  - add less/more possible answers than 4 (not correct answers, possible answers) (DONE)
+  - add a nicer UI for GUI (DONE)
   - possibly use AI to generate random quizzes
   - Add a web application

@@ -3,6 +3,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 import sv_ttk
 import darkdetect
+import random
 
 class SettingsFrame(tk.Frame):
     def __init__(self, master, close_win, save_color):
@@ -134,10 +135,13 @@ class MainMenu(tk.Frame):
     # and finds the selected quiz (if applicable) and runs it
     def select_quiz(self):
         focus = self.tree.focus()
-        self.selected = self.tree.item(focus)['values'][0]
+        values = self.tree.item(focus)['values']
 
-        if self.selected != None:
-            self.go_quiz()
+        if values:
+            self.selected = values[0]
+
+            if self.selected != None:
+                self.go_quiz()
 
     # this exists for the tree bind
     def item_selected_event(event, useless_var):
@@ -167,13 +171,19 @@ class Question(tk.Frame):
         self.question = question
         self.options = options
         self.answers = answers
+        self.randomized_ops = []
+
+        for i in options:
+            self.randomized_ops.append(i)
+
+        random.shuffle(self.randomized_ops)
 
         self._submit = submit # save the submit function so that we can first verify something was selected when submitting
 
         self.selected = {}
         self.tk_options = []
 
-        for option in options:
+        for option in self.randomized_ops:
             self.selected[option] = tk.IntVar()
 
         self.q_label = ttk.Label(self, text=self.question)
@@ -182,7 +192,7 @@ class Question(tk.Frame):
         # there are 4 rows for options
         self.option_row = 1
 
-        for option in options:
+        for option in self.randomized_ops:
             # a check button to let user select their choices (more than 1 answer possible)
             chkbtn = ttk.Checkbutton(self, text=f"{option}", variable=self.selected[option])
             chkbtn.grid(row=self.option_row, column=0, sticky='nsew', padx=5, pady=5)
@@ -202,7 +212,7 @@ class Question(tk.Frame):
         # used by GUI class to get what was selected to check answer to calculate user score
         selected = []
 
-        for op in self.options:
+        for op in self.randomized_ops:
             if self.selected[op].get() == 1:
                 selected.append(op)
 
