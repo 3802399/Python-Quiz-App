@@ -448,7 +448,6 @@ class GUI(tk.Tk):
         tk.Tk.__init__(self) # initialize a new window
 
         self.title("Quiz Application")
-        self.geometry("450x300")
 
         self.directory = "quizzes"
         self.manager = _quiz.QuizManager()
@@ -469,12 +468,12 @@ class GUI(tk.Tk):
         self.quiz_creator = QuizCreateMain(self, self.go_home_from_creator, self.create_question)
         self.settings_frame = SettingsFrame(self, self.close_settings, self.save_color)
 
-        self.main_menu.pack(expand="yes")
+        self.main_menu.pack(expand="yes", padx=15, pady=15)
 
     def go_settings(self):
         # go to the settings frame
         self.main_menu.pack_forget()
-        self.settings_frame.pack(expand="yes")
+        self.settings_frame.pack(expand="yes", padx=15, pady=15)
 
     def save_color(self, color):
         if color in self.valid_themes:
@@ -485,7 +484,7 @@ class GUI(tk.Tk):
             sv_ttk.set_theme(os_theme)
 
     def close_settings(self):
-        self.main_menu.pack(expand="yes")
+        self.main_menu.pack(expand="yes", padx=15, pady=15)
 
     # in case there is a new quiz (ex. a quiz was created and user returned to main menu)
     # get all quizzes in directory
@@ -499,7 +498,7 @@ class GUI(tk.Tk):
     # which asks for name and topic of quiz
     def create(self):
         self.main_menu.pack_forget()
-        self.quiz_creator.pack(expand="yes")
+        self.quiz_creator.pack(expand="yes", padx=15, pady=15)
 
     def go_home_from_creator(self):
         # empty the Entry widgets
@@ -508,7 +507,7 @@ class GUI(tk.Tk):
 
         # hide the creator menu and return home
         self.quiz_creator.pack_forget()
-        self.main_menu.pack(expand="yes")
+        self.main_menu.pack(expand="yes", padx=15, pady=15)
 
     # set up all the questions and let user iterate through questions
     def run_quiz(self):
@@ -545,7 +544,7 @@ class GUI(tk.Tk):
             self.run_question_submit(self.main_menu)
         else:
             first_frame = self.quiz_frames[0]
-            first_frame.pack(expand="yes")
+            first_frame.pack(expand="yes", padx=15, pady=15)
 
             self.current_frame = 0
 
@@ -577,10 +576,10 @@ class GUI(tk.Tk):
             # check whether we should return home (if user was running a quiz)
             # or we should return to the quiz creator main page (name + topic entries)
             if isinstance(frame, QuizCreateQuestion):
-                self.quiz_creator.pack(expand="yes")
+                self.quiz_creator.pack(expand="yes", padx=15, pady=15)
                 self.current_frame = -1
             else:
-                self.main_menu.pack(expand="yes")
+                self.main_menu.pack(expand="yes", padx=15, pady=15)
                 self.current_frame = 0
         else:
             # an index > 0 means that this wasn't the only question and we go back to another question
@@ -588,7 +587,7 @@ class GUI(tk.Tk):
             self.current_frame -= 1
 
             frame.pack_forget()
-            back_frame.pack(expand="yes")
+            back_frame.pack(expand="yes", padx=15, pady=15)
 
     # ran when user submits answer to question
     def run_question_submit(self, frame):
@@ -615,7 +614,7 @@ class GUI(tk.Tk):
             self.quiz_frames = []
 
             frame.pack_forget()
-            quiz_end.pack(expand="yes")
+            quiz_end.pack(expand="yes", padx=15, pady=15)
 
             self.current_frame = -1
         else:
@@ -628,13 +627,13 @@ class GUI(tk.Tk):
                 next_frame.submit.config(text="Finish")
 
             frame.pack_forget()
-            next_frame.pack(expand="yes")
+            next_frame.pack(expand="yes", padx=15, pady=15)
 
             self.current_frame += 1
 
     # show the main menu and refresh quizzes
     def go_home_from_end(self):
-        self.main_menu.pack(expand="yes")
+        self.main_menu.pack(expand="yes", padx=15, pady=15)
         self.main_menu.do_refresh(self.refresh)
 
     # create a new question
@@ -660,7 +659,7 @@ class GUI(tk.Tk):
             _frame.pack_forget()
             self.current_frame += 1
 
-        question.pack(expand="yes")
+        question.pack(expand="yes", padx=15, pady=15)
 
     # check to see if this is last frame (then create a new question) or not (then go the next frame that already exists)
     def next_or_new(self, frame):
@@ -670,7 +669,7 @@ class GUI(tk.Tk):
             self.current_frame += 1
 
             frame.pack_forget()
-            self.quiz_frames[self.current_frame].pack(expand="yes")
+            self.quiz_frames[self.current_frame].pack(expand="yes", padx=15, pady=15)
 
     # finish creation of quiz
     def quiz_creation_finish(self, last_frame):
@@ -719,4 +718,4 @@ class GUI(tk.Tk):
         quiz_create_end = QuizCreationEnd(self, msg, self.go_home_from_end)
 
         last_frame.pack_forget()
-        quiz_create_end.pack(expand="yes")
+        quiz_create_end.pack(expand="yes", padx=15, pady=15)

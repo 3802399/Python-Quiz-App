@@ -2,11 +2,13 @@ My final project is a quiz application that allows the user to be able to
 create and answer quizzes.
 
 Scope:
-  - No more or less than 4 possible answers per question
+  - Any number of options per question allowed (minimum of two, however)
   - A few sample quizzes are included
   - Quizzes can be created (by the user) and saved on the hard drive
   - No limit to number of questions that can be created
-  - Both GUI and CLI provided
+  - Both GUI and CLI interfaces provided
+  - settings to change between modes/gui theme color (dark or light)
+  - theme for GUI (Sun Valley, looks loosely like Windows 11 UI)
 
 Flow:
   CLI:
